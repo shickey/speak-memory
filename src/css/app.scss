@@ -1,0 +1,261 @@
+/*
+ * Speak Memory
+ *
+ * Video discussions
+ *
+ * Sean Hickey
+ * MIT Media Lab, Lifelong Kindergarten Group
+ * 23 Mar 2018
+ *
+ */
+ 
+$app-font: 'Lato', sans-serif;
+$app-title-font: 'Roboto Condensed', sans-serif;
+ 
+/* "Early Morning" theme */
+$app-bg-color: #3A4554;
+$node-color: #FFF8E4;
+$info-bg-color: #222028;
+$info-text-color: $node-color;
+$node-selected-color: #C9EBB5;
+$convo-element-color: lighten($info-bg-color, 10%);
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body { 
+  margin:0;
+  position:fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  font-family: $app-font;
+  background-color: $app-bg-color;
+  color: #d8d8d8;
+}
+
+hr {
+  width: 95%;
+  border-color: #777;
+}
+
+a, a:hover, a:visited {
+  color: #d8d8d8;
+  text-decoration: none;
+}
+
+/* Overall Layout */
+
+.navbar {
+  background-color: darken($info-bg-color, 6%);
+  h1 {
+    font-size: 1.8em;
+    color: #ccc;
+    margin: 0;
+    padding: 11px 17px;
+  }
+}
+
+.col-left {
+  float: left;
+  width: 70%;
+  height: 100vh;
+}
+
+.col-right {
+  float: left;
+  width: 30%;
+  height: 100vh;
+}
+
+/* Dashboard */
+
+.topics-list {
+  width: 80%;
+  margin: 0 10%;
+
+  h2 {
+    font-size: 1.6em;
+    margin: 0.83em 0 0.25em;
+  }
+
+  hr {
+    width: 100%;
+    border-color: #d8d8d8;
+  }
+
+}
+
+.topic-cell {
+  margin: 17px 0;
+}
+
+.topic-cell-inner {
+  margin: 11px 0;
+  padding: 17px;
+  height: 100%;
+  background-color: $info-bg-color;
+  border-radius: 15px;
+}
+
+.topic-cell-title {
+  h3 {
+    margin: 0;
+  }
+}
+
+.topic-cell-content {
+  padding: 11px 0;
+  // font-size: .9em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topic-cell-footer {
+  padding: 3px 0;
+  font-size: 1em;
+  img {
+    vertical-align: middle;
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    margin: 0 11px 0 0;
+  }
+}
+
+/* Graph */
+
+.graph-container {
+  overflow: hidden;
+  background-color: $app-bg-color;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.nodes-container {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+}
+
+.links-container {
+  position: absolute;
+}
+
+.node {
+  position: absolute;
+  border-radius: 24px;
+  width: 48px;
+  min-height: 48px;
+  background-color: #333;
+  color: #ccc;
+}
+
+.node-selected {
+}
+
+.node-unselected {
+  background-color: #000;
+  img {
+    opacity: 0.3;
+  }
+}
+
+
+.root-node {
+  border-radius: 10px;
+  width: 300px;
+  min-height: 100px;
+}
+
+.node-avatar {
+  vertical-align: middle;
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  margin: 0 11px;
+}
+
+.node-title {
+  font-size: 1.2em;
+  padding: 6px 11px 0;
+}
+
+.node-content {
+  padding: 6px 11px;
+  font-size: .9em;
+}
+
+.node-footer {
+  font-size: .8em;
+  margin: 11px 0;
+}
+
+.reply-avatar {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+}
+
+svg {
+
+  .link {
+    stroke: #999;
+    stroke-width: 4;
+  }
+
+  .link-selected {
+  }
+
+  .link-unselected {
+    stroke: #666;
+    stroke-width: 2;
+  }
+
+}
+
+/* Sidebar */
+// @TODO: Clean up (esp. .info)
+
+.info {
+  background-color: $info-bg-color;
+  color: $info-text-color;
+  padding: 0 18px;
+}
+
+.sidebar {
+  h2 {
+    margin-bottom: 0;
+  }
+}
+
+.discuss-element {
+  padding: 4px 11px 11px;
+  margin: 11px 0;
+  border-radius: 5px;
+  background-color: $convo-element-color;
+}
+
+.discuss-element-header {
+  margin: 6px 0;
+  font-size: .8em;
+  img {
+    vertical-align: middle;
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    margin: 0 11px 0 0;
+  }
+}
+
+/* General Utilities */
+
+.hidden {
+  display: none;
+}
