@@ -47,6 +47,18 @@ a, a:hover, a:visited {
   text-decoration: none;
 }
 
+/* Navbar */
+
+.navbar {
+  background-color: darken($info-bg-color, 10%);
+  h1 {
+    font-size: 1.5em;
+    color: #ccc;
+    margin: 0;
+    padding: 17px 29px;
+  }
+}
+
 /* Discussion Player */
 
 .player-container {
@@ -78,17 +90,16 @@ a, a:hover, a:visited {
   }
 }
 
-/* Overall Layout */
 
-.navbar {
-  background-color: darken($info-bg-color, 10%);
-  h1 {
-    font-size: 1.5em;
-    color: #ccc;
-    margin: 0;
-    padding: 17px 29px;
-  }
-}
+/***********************************************************
+ *
+ *
+ *   @TODO: OLD STUFF BELOW HERE! Clean up eventually
+ *
+ *
+ ***********************************************************/
+
+
 
 .col-left {
   float: left;
