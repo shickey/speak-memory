@@ -77,15 +77,31 @@ class DiscussionPlayer extends React.Component {
     if (this.state.currentVideoIdx < data.length - 1) {
       this.setState({currentVideoIdx: this.state.currentVideoIdx + 1});
     }
+    else {
+      this.setState({currentVideoIdx: -1});
+    }
   }
 
   render() {
 
     var avatars = [];
     data.forEach( (d, idx) => {
+      var pullClass = '';
+      var currentVideoIdx = this.state.currentVideoIdx;
+      if (currentVideoIdx !== -1) {
+        if (idx < currentVideoIdx) {
+          pullClass = 'avatar-past';
+        }
+        else if (idx > currentVideoIdx) {
+          pullClass = 'avatar-future';
+        }
+        else {
+          pullClass = 'avatar-now';
+        }
+      }
       avatars.push(
-        <div className="player-avatar" key={d.id}>
-          <img onClick={() => this.avatarClicked(idx)} src={'img/' + d.avatar} className={idx === this.state.currentVideoIdx ? 'selected-video' : ''} />
+        <div className={`player-avatar ${pullClass}`} key={d.id}>
+          <img onClick={() => this.avatarClicked(idx)} src={'img/' + d.avatar} />
         </div>
       );
     });

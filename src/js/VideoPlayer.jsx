@@ -4,7 +4,9 @@ class VideoPlayer extends React.Component {
 
   shouldComponentUpdate(newProps) {
     this.videoElement.src = newProps.videoSrc;
-    this.videoElement.play();
+    if (newProps.videoSrc !== '') {
+      this.videoElement.play();
+    }
     return false;
   }
 
