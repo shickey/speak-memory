@@ -76,7 +76,7 @@ const mapStateToProps = (state, props) => {
     data: (() => {
       // @TODO: Is this reasonable? Or ridiculous?
       //        Most importantly: does it guarantee ordering by timestamp?
-      var fbData = getVal(state.firebase, `data/discussions/-L8ZSju-G6FzkaaCOe39`);
+      var fbData = getVal(state.firebase, `data/discussions/${props.match.params.discussionId}`);
       if (fbData) {
         return Object.values(fbData);
       }
@@ -88,7 +88,7 @@ const mapStateToProps = (state, props) => {
 export default compose(
   firebaseConnect((props) => {
     return [
-      `discussions/-L8ZSju-G6FzkaaCOe39`
+      `discussions/${props.match.params.discussionId}`
     ]
   }),
   connect(mapStateToProps)

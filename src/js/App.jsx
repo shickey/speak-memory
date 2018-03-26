@@ -4,6 +4,7 @@ import { createStore, combineReducers, compose } from 'redux';
 import { Provider } from 'react-redux';
 import firebase from 'firebase';
 import { reactReduxFirebase, firebaseReducer } from 'react-redux-firebase';
+import { HashRouter, Route, Redirect, Switch } from 'react-router-dom'
 
 import Navbar from './Navbar';
 import DiscussionPlayer from './DiscussionPlayer';
@@ -33,10 +34,12 @@ const store = createStoreWithFirebase(rootReducer, {});
 
 const App = () => (
   <Provider store={store}>
-    <div>
-      <Navbar />
-      <DiscussionPlayer />
-    </div>
+    <HashRouter>
+      <div>
+        <Navbar />
+        <Route path="/discussion/:discussionId" component={DiscussionPlayer} />
+      </div>
+    </HashRouter>
   </Provider>
 );
 
