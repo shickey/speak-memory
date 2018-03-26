@@ -172,7 +172,9 @@ db.ref('/').set({
       discussionEntryUpdates[entryKey] = entryUpdate;
     })
 
-    discussionsUpdates[discussionKey] = discussionEntryUpdates;
+    discussionsUpdates[discussionKey] = {
+      entries: discussionEntryUpdates
+    };
 
     console.log(discussionsUpdates);
 

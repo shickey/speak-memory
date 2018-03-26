@@ -23,7 +23,7 @@ class DiscussionPlayer extends React.Component {
   }
 
   onVideoEnd() {
-    if (this.state.currentVideoIdx < this.props.data.length - 1) {
+    if (this.state.currentVideoIdx < Object.values(this.props.discussion.entries).length - 1) {
       this.setState({currentVideoIdx: this.state.currentVideoIdx + 1});
     }
     else {
@@ -33,11 +33,13 @@ class DiscussionPlayer extends React.Component {
 
   render() {
 
-    if (!this.props.data) { return null; }
+    if (!this.props.discussion) { return null; }
 
     var avatars = [];
 
-    this.props.data.forEach( (d, idx) => {
+    var entries = Object.values(this.props.discussion.entries)
+
+    entries.forEach( (d, idx) => {
       var pullClass = '';
       var currentVideoIdx = this.state.currentVideoIdx;
       if (currentVideoIdx !== null) {
@@ -60,7 +62,7 @@ class DiscussionPlayer extends React.Component {
 
     return (
       <div className="player-container">
-        <VideoPlayer videoInfo={this.state.currentVideoIdx !== null ? this.props.data[this.state.currentVideoIdx] : null } onVideoEnd={() => this.onVideoEnd()} />
+        <VideoPlayer videoInfo={this.state.currentVideoIdx !== null ? entries[this.state.currentVideoIdx] : null } onVideoEnd={() => this.onVideoEnd()} />
         <div className="avatars-container">
           <div className={ this.state.currentVideoIdx !== null ? 'avatars-line playing' : 'avatars-line'} ></div>
           {avatars}
@@ -73,15 +75,16 @@ class DiscussionPlayer extends React.Component {
 
 const mapStateToProps = (state, props) => {
   return {
-    data: (() => {
-      // @TODO: Is this reasonable? Or ridiculous?
-      //        Most importantly: does it guarantee ordering by timestamp?
-      var fbData = getVal(state.firebase, `data/discussions/${props.match.params.discussionId}`);
-      if (fbData) {
-        return Object.values(fbData);
-      }
-      return undefined;
-    })()
+    // discussion: (() => {
+    //   // @TODO: Is this reasonable? Or ridiculous?
+    //   //        Most importantly: does it guarantee ordering by timestamp?
+    //   var fbData = getVal(state.firebase, `data/discussions/${props.match.params.discussionId}`);
+    //   if (fbData) {
+    //     return Object.values(fbData);
+    //   }
+    //   return undefined;
+    // })()
+    discussion: getVal(state.firebase, `data/discussions/${props.match.params.discussionId}`)
   }
 };
 
