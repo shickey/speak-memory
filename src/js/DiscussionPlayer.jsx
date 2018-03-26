@@ -63,13 +63,14 @@ class DiscussionPlayer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentVideoIdx: -1
+      currentVideoIdx: null
     }
     this.avatarClicked = this.avatarClicked.bind(this);
     this.onVideoEnd = this.onVideoEnd.bind(this);
   }
 
   avatarClicked(idx) {
+    if (idx === this.state.currentVideoIdx) { return; }
     this.setState({currentVideoIdx: idx});
   }
 
@@ -78,7 +79,7 @@ class DiscussionPlayer extends React.Component {
       this.setState({currentVideoIdx: this.state.currentVideoIdx + 1});
     }
     else {
-      this.setState({currentVideoIdx: -1});
+      this.setState({currentVideoIdx: null});
     }
   }
 
@@ -88,7 +89,7 @@ class DiscussionPlayer extends React.Component {
     data.forEach( (d, idx) => {
       var pullClass = '';
       var currentVideoIdx = this.state.currentVideoIdx;
-      if (currentVideoIdx !== -1) {
+      if (currentVideoIdx !== null) {
         if (idx < currentVideoIdx) {
           pullClass = 'avatar-past';
         }
@@ -108,8 +109,9 @@ class DiscussionPlayer extends React.Component {
 
     return (
       <div className="player-container">
-        <VideoPlayer videoSrc={(this.state.currentVideoIdx === -1 ? '' : 'video/' + data[this.state.currentVideoIdx].video) } onVideoEnd={() => this.onVideoEnd()} />
+        <VideoPlayer videoSrc={(this.state.currentVideoIdx !== null ? 'video/' + data[this.state.currentVideoIdx].video : '' )} onVideoEnd={() => this.onVideoEnd()} />
         <div className="avatars-container">
+          <div className={ this.state.currentVideoIdx !== null ? 'avatars-line playing' : 'avatars-line'} ></div>
           {avatars}
         </div>
       </div>
