@@ -26,15 +26,15 @@ class VideoPlayer extends React.Component {
       var info = this.props.videoInfo;
       overlayContent = (
         <div className="player-overlay-content">
-          <img className="player-overlay-avatar" src={'img/' + info.avatar} />
+          <img className="player-overlay-avatar" src={info.avatarUrl} />
           <div className="player-overlay-title">{info.author}</div>
         </div>
-      )
+      );
     }
 
     return (
       <div className="player">
-        <video autoPlay src={this.props.videoInfo ? 'video/' + this.props.videoInfo.file : ''} ref={ (element) => this.videoElement = element }></video>
+        <video autoPlay src={this.props.videoInfo ? this.props.videoInfo.videoUrl : ''} ref={ (element) => this.videoElement = element }></video>
         <div className="player-overlay" ref={ (overlay) => this.overlay = overlay }>
           {overlayContent}
         </div>
