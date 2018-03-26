@@ -6,55 +6,55 @@ const data = [
     id: 1,
     author: 'Gustaaf Gunnhildr',
     avatar: 'user-0.png',
-    video: 'betterwatchout-1.webm'
+    file: 'betterwatchout-1.webm'
   },
   {
     id: 2,
     author: 'Radha Manisha',
     avatar: 'user-7.png',
-    video: 'betterwatchout-2.webm'
+    file: 'betterwatchout-2.webm'
   },
   {
     id: 3,
     author: 'Branda Rajesh',
     avatar: 'user-18.png',
-    video: 'betterwatchout-3.webm'
+    file: 'betterwatchout-3.webm'
   },
   {
     id: 4,
     author: 'Vassiliki Aucaman',
     avatar: 'user-1.png',
-    video: 'betterwatchout-4.webm'
+    file: 'betterwatchout-4.webm'
   },
   {
     id: 5,
     author: 'Sikke Fflur',
     avatar: 'user-22.png',
-    video: 'betterwatchout-5.webm'
+    file: 'betterwatchout-5.webm'
   },
   {
     id: 6,
     author: 'Deepti Jonas',
     avatar: 'user-16.png',
-    video: 'betterwatchout-6.webm'
+    file: 'betterwatchout-6.webm'
   },
   {
     id: 7,
     author: 'Omolara Cecilia',
     avatar: 'user-11.png',
-    video: 'betterwatchout-7.webm'
+    file: 'betterwatchout-7.webm'
   },
   {
     id: 8,
     author: 'Valentine Eunike',
     avatar: 'user-19.png',
-    video: 'betterwatchout-8.webm'
+    file: 'betterwatchout-8.webm'
   },
   {
     id: 9,
     author: 'Sigimund Urban',
     avatar: 'user-2.png',
-    video: 'betterwatchout-9.webm'
+    file: 'betterwatchout-9.webm'
   }
 ];
 
@@ -109,7 +109,7 @@ class DiscussionPlayer extends React.Component {
 
     return (
       <div className="player-container">
-        <VideoPlayer videoSrc={(this.state.currentVideoIdx !== null ? 'video/' + data[this.state.currentVideoIdx].video : '' )} onVideoEnd={() => this.onVideoEnd()} />
+        <VideoPlayer videoInfo={this.state.currentVideoIdx !== null ? data[this.state.currentVideoIdx] : null } onVideoEnd={() => this.onVideoEnd()} />
         <div className="avatars-container">
           <div className={ this.state.currentVideoIdx !== null ? 'avatars-line playing' : 'avatars-line'} ></div>
           {avatars}

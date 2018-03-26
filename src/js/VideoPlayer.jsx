@@ -2,23 +2,42 @@ import React from 'react';
 
 class VideoPlayer extends React.Component {
 
-  shouldComponentUpdate(newProps) {
-    this.videoElement.src = newProps.videoSrc;
-    if (newProps.videoSrc !== '') {
-      this.videoElement.play();
-    }
-    return false;
+  constructor(props) {
+    super(props);
+    this.onStart = this.onStart.bind(this);
   }
 
   componentDidMount() {
-    this.videoElement.addEventListener('ended', this.props.onVideoEnd)
+    this.videoElement.addEventListener('ended', this.props.onVideoEnd);
+    this.videoElement.addEventListener('playing', this.onStart);
+  }
+
+  onStart() {
+    this.overlay.classList.add('showing');
+    setTimeout(() => {
+      this.overlay.classList.remove('showing');
+    }, 4000);
   }
 
   render() {
 
+    var overlayContent = null;
+    if (this.props.videoInfo) {
+      var info = this.props.videoInfo;
+      overlayContent = (
+        <div className="player-overlay-content">
+          <img className="player-overlay-avatar" src={'img/' + info.avatar} />
+          <div className="player-overlay-title">{info.author}</div>
+        </div>
+      )
+    }
+
     return (
       <div className="player">
-        <video src={this.props.videoSrc} ref={ (element) => this.videoElement = element }></video>
+        <video autoPlay src={this.props.videoInfo ? 'video/' + this.props.videoInfo.file : ''} ref={ (element) => this.videoElement = element }></video>
+        <div className="player-overlay" ref={ (overlay) => this.overlay = overlay }>
+          {overlayContent}
+        </div>
       </div>
     );
   }
