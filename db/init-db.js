@@ -146,11 +146,6 @@ const discussions = {
     title: "Second!",
     entries: [
       {
-        author: 'Gustaaf Gunnhildr',
-        avatarUrl: 'https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/avatars%2Fuser-0.png?alt=media&token=0fbd28e7-5641-4bc7-be4f-62471f2be63e',
-        videoUrl: 'https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/videos%2Fbetterwatchout-1.webm?alt=media&token=4647daa5-8443-46ae-8339-9198d55fe3bc'
-      },
-      {
         author: 'Radha Manisha',
         avatarUrl: 'https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/avatars%2Fuser-7.png?alt=media&token=8ba5a195-527e-4dd1-ad87-c0ecadb0191b',
         videoUrl: 'https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/videos%2Fbetterwatchout-2.webm?alt=media&token=295b87c4-ff96-4685-983d-22a880c9a7d6'
@@ -159,6 +154,11 @@ const discussions = {
         author: 'Branda Rajesh',
         avatarUrl: 'https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/avatars%2Fuser-18.png?alt=media&token=14e3aae6-823a-4a1e-8df6-1df168b4d6',
         videoUrl: 'https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/videos%2Fbetterwatchout-3.webm?alt=media&token=4d758ed9-a4ac-49da-8bcd-26a1e6b1abd2'
+      },
+      {
+        author: 'Vassiliki Aucaman',
+        avatarUrl: 'https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/avatars%2Fuser-1.png?alt=media&token=bc662af1-a548-491d-9597-3f0cea6e90df',
+        videoUrl: 'https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/videos%2Fbetterwatchout-4.webm?alt=media&token=b977fa29-760c-45bd-ab0f-874c300b711d'
       }
     ]
   },
@@ -246,20 +246,15 @@ const discussions = {
     title: "Just one entry",
     entries: [
       {
-        author: 'Gustaaf Gunnhildr',
-        avatarUrl: 'https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/avatars%2Fuser-0.png?alt=media&token=0fbd28e7-5641-4bc7-be4f-62471f2be63e',
-        videoUrl: 'https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/videos%2Fbetterwatchout-1.webm?alt=media&token=4647daa5-8443-46ae-8339-9198d55fe3bc'
+        author: 'Branda Rajesh',
+        avatarUrl: 'https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/avatars%2Fuser-18.png?alt=media&token=14e3aae6-823a-4a1e-8df6-1df168b4d6',
+        videoUrl: 'https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/videos%2Fbetterwatchout-3.webm?alt=media&token=4d758ed9-a4ac-49da-8bcd-26a1e6b1abd2'
       }
     ]
   },
   6: {
     title: "Still more discussions",
     entries: [
-      {
-        author: 'Gustaaf Gunnhildr',
-        avatarUrl: 'https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/avatars%2Fuser-0.png?alt=media&token=0fbd28e7-5641-4bc7-be4f-62471f2be63e',
-        videoUrl: 'https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/videos%2Fbetterwatchout-1.webm?alt=media&token=4647daa5-8443-46ae-8339-9198d55fe3bc'
-      },
       {
         author: 'Vassiliki Aucaman',
         avatarUrl: 'https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/avatars%2Fuser-1.png?alt=media&token=bc662af1-a548-491d-9597-3f0cea6e90df',
@@ -290,11 +285,6 @@ const discussions = {
   7: {
     title: "Looooooong",
     entries: [
-      {
-        author: 'Gustaaf Gunnhildr',
-        avatarUrl: 'https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/avatars%2Fuser-0.png?alt=media&token=0fbd28e7-5641-4bc7-be4f-62471f2be63e',
-        videoUrl: 'https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/videos%2Fbetterwatchout-1.webm?alt=media&token=4647daa5-8443-46ae-8339-9198d55fe3bc'
-      },
       {
         author: 'Radha Manisha',
         avatarUrl: 'https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/avatars%2Fuser-7.png?alt=media&token=8ba5a195-527e-4dd1-ad87-c0ecadb0191b',
