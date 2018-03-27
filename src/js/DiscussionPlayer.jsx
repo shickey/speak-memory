@@ -75,15 +75,6 @@ class DiscussionPlayer extends React.Component {
 
 const mapStateToProps = (state, props) => {
   return {
-    // discussion: (() => {
-    //   // @TODO: Is this reasonable? Or ridiculous?
-    //   //        Most importantly: does it guarantee ordering by timestamp?
-    //   var fbData = getVal(state.firebase, `data/discussions/${props.match.params.discussionId}`);
-    //   if (fbData) {
-    //     return Object.values(fbData);
-    //   }
-    //   return undefined;
-    // })()
     discussion: getVal(state.firebase, `data/discussions/${props.match.params.discussionId}`)
   }
 };

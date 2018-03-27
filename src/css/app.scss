@@ -59,6 +59,63 @@ a, a:hover, a:visited {
   }
 }
 
+/* Dashboard */
+.discussions-list {
+  width: 80%;
+  margin: 0 10%;
+
+  h2 {
+    font-size: 1.6em;
+    margin: 0.83em 0 0.25em;
+  }
+
+}
+
+.discussions-list-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.discussion-cell {
+  margin: 17px 0;
+  width: 250px;
+}
+
+.discussion-cell-inner {
+  margin: 11px 0;
+  padding: 0;
+  height: 100%;
+  background-color: $info-bg-color;
+  border-radius: 15px;
+}
+
+.discussion-cell-title {
+  padding: 11px 17px 7px;
+  h3 {
+    margin: 0;
+  }
+}
+
+.discussion-cell-content {
+  padding: 0;
+  height: 150px;
+  width: 100%;
+  background-color: #000;
+}
+
+.discussion-cell-footer {
+  padding: 7px 17px;
+  font-size: .9em;
+  img {
+    vertical-align: middle;
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    margin: 0 11px 0 0;
+  }
+}
+
 /* Discussion Player */
 
 .player-container {

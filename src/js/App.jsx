@@ -7,6 +7,7 @@ import { reactReduxFirebase, firebaseReducer } from 'react-redux-firebase';
 import { HashRouter, Route, Redirect, Switch } from 'react-router-dom'
 
 import Navbar from './Navbar';
+import Dashboard from './Dashboard';
 import DiscussionPlayer from './DiscussionPlayer';
 
 const firebaseConfig = {
@@ -37,7 +38,10 @@ const App = () => (
     <HashRouter>
       <div>
         <Navbar />
-        <Route path="/discussion/:discussionId" component={DiscussionPlayer} />
+        <Switch>
+          <Route exact path="/" component={Dashboard} />
+          <Route path="/discussion/:discussionId" component={DiscussionPlayer} />
+        </Switch>
       </div>
     </HashRouter>
   </Provider>

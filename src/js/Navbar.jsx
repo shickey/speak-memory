@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => (
   <div className="navbar">
-    <h1>Speak Memory</h1>
+    <Link to="/">
+      <h1>Speak Memory</h1>
+    </Link>
   </div>
 );
 
