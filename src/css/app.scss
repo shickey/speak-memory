@@ -47,6 +47,44 @@ a, a:hover, a:visited {
   text-decoration: none;
 }
 
+.btn {
+  font-family: $app-font;
+  background-color: #c8c8c8;
+  font-size: 1em;
+  border: 0;
+  border-radius: 5px;
+  padding: 4px 11px;
+
+  &:hover:enabled {
+    background-color: #aaa;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:active {
+    background-color: #777;
+  }
+
+  img {
+    display: inline;
+    width: 20px;
+    height: 14px;
+    margin-right: 2px;
+  }
+}
+
+.btn-md {
+  font-size: 1.2em;
+  padding: 6px 14px;
+}
+
+.btn-lg {
+  font-size: 1.5em;
+  padding: 8px 19px;
+}
+
 /* Navbar */
 
 .navbar {
@@ -258,6 +296,38 @@ a, a:hover, a:visited {
   }
 }
 
+
+/* Recorder */
+.recorder {
+  width: 70%;
+  margin: 0 15%;
+  background-color: $info-bg-color;
+  padding: 21px;
+  text-align: center;
+}
+
+.recorder-error {
+  display: inline-block;
+  width: 600px;
+  height: 450px;
+  background-color: #000;
+  font-size: 1.3em;
+  padding: 21px;
+}
+
+.recorder-video {
+  width: 600px;
+  height: 450px;
+  background-color: #000;
+}
+
+.recorder-controls {
+  padding: 11px;
+}
+
+.recorder-record-button {
+  
+}
 
 /***********************************************************
  *

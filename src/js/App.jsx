@@ -9,6 +9,7 @@ import { HashRouter, Route, Redirect, Switch } from 'react-router-dom'
 import Navbar from './Navbar';
 import Dashboard from './Dashboard';
 import DiscussionPlayer from './DiscussionPlayer';
+import Recorder from './Recorder';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCVTIPfhDXc0nYq2fiqPC9cLUUlaGrOsTo',
@@ -41,6 +42,7 @@ const App = () => (
         <Switch>
           <Route exact path="/" component={Dashboard} />
           <Route path="/discussion/:discussionId" component={DiscussionPlayer} />
+          <Route path="/record" component={Recorder} />
         </Switch>
       </div>
     </HashRouter>
