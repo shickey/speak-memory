@@ -85,7 +85,39 @@ a, a:hover, a:visited {
   padding: 8px 19px;
 }
 
-/* Navbar */
+.btn-cancel {
+  background-color: #d8483f;
+  color: #d8d8d8;
+
+  &:hover:enabled {
+    background-color: darken(#d8483f, 8%);
+  }
+
+  &:disabled {
+    background-color: lighten(#d8483f, 15%);
+    color: darken(#d8d8d8, 15%);
+  }
+}
+
+.btn-success {
+  background-color: #4f8c58;
+  color: #d8d8d8;
+
+  &:hover:enabled {
+    background-color: darken(#4f8c58, 8%);
+  }
+
+  &:disabled {
+    background-color: lighten(#4f8c58, 15%);
+    color: darken(#d8d8d8, 35%);
+  }
+}
+
+/********************************************
+ *
+ * Navbar 
+ *
+ ********************************************/
 
 .navbar {
   background-color: darken($info-bg-color, 10%);
@@ -97,7 +129,37 @@ a, a:hover, a:visited {
   }
 }
 
-/* Dashboard */
+/********************************************
+ *
+ * React Modal Style Overrides
+ *
+ ********************************************/
+
+.modal {
+  position: absolute;
+  top: 100px;
+  left: 60px;
+  right: 60px;
+  height: 300px;
+  background-color: $convo-element-color;
+  padding: 21px;
+  border-radius: 10px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(25, 25, 25, 0.9);
+}
+
+/********************************************
+ *
+ * Dashboard 
+ *
+ ********************************************/
 .discussions-list {
   width: 80%;
   margin: 0 10%;
@@ -154,7 +216,11 @@ a, a:hover, a:visited {
   }
 }
 
-/* Discussion Player */
+/********************************************
+ *
+ * Discussion Player 
+ *
+ ********************************************/
 
 .player-container {
   background-color: $info-bg-color;
@@ -296,8 +362,12 @@ a, a:hover, a:visited {
   }
 }
 
+/********************************************
+ *
+ * Recorder 
+ *
+ ********************************************/
 
-/* Recorder */
 .recorder {
   width: 70%;
   margin: 0 15%;
@@ -306,7 +376,7 @@ a, a:hover, a:visited {
   text-align: center;
 }
 
-.recorder-error {
+.recorder-info {
   display: inline-block;
   width: 600px;
   height: 450px;
@@ -325,218 +395,19 @@ a, a:hover, a:visited {
   padding: 11px;
 }
 
-.recorder-record-button {
-  
+.recorder-controls-button {
+  margin: 0 6px;
 }
 
-/***********************************************************
- *
- *
- *   @TODO: OLD STUFF BELOW HERE! Clean up eventually
- *
- *
- ***********************************************************/
-
-
-
-.col-left {
-  float: left;
-  width: 70%;
-  height: 100vh;
+.pulse {
+  animation: pulse 1s alternate infinite;
 }
 
-.col-right {
-  float: left;
-  width: 30%;
-  height: 100vh;
-}
-
-/* Dashboard */
-
-.topics-list {
-  width: 80%;
-  margin: 0 10%;
-
-  h2 {
-    font-size: 1.6em;
-    margin: 0.83em 0 0.25em;
+@keyframes pulse {
+  from {
+    opacity: 1.0;
   }
-
-  hr {
-    width: 100%;
-    border-color: #d8d8d8;
+  to {
+    opacity: 0.2;
   }
-
-}
-
-.topic-cell {
-  margin: 17px 0;
-}
-
-.topic-cell-inner {
-  margin: 11px 0;
-  padding: 17px;
-  height: 100%;
-  background-color: $info-bg-color;
-  border-radius: 15px;
-}
-
-.topic-cell-title {
-  h3 {
-    margin: 0;
-  }
-}
-
-.topic-cell-content {
-  padding: 11px 0;
-  // font-size: .9em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.topic-cell-footer {
-  padding: 3px 0;
-  font-size: 1em;
-  img {
-    vertical-align: middle;
-    width: 36px;
-    height: 36px;
-    border-radius: 18px;
-    margin: 0 11px 0 0;
-  }
-}
-
-/* Graph */
-
-.graph-container {
-  overflow: hidden;
-  background-color: $app-bg-color;
-  position: relative;
-  width: 100%;
-  height: 100vh;
-}
-
-.nodes-container {
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-}
-
-.links-container {
-  position: absolute;
-}
-
-.node {
-  position: absolute;
-  border-radius: 24px;
-  width: 48px;
-  min-height: 48px;
-  background-color: #333;
-  color: #ccc;
-}
-
-.node-selected {
-}
-
-.node-unselected {
-  background-color: #000;
-  img {
-    opacity: 0.3;
-  }
-}
-
-
-.root-node {
-  border-radius: 10px;
-  width: 300px;
-  min-height: 100px;
-}
-
-.node-avatar {
-  vertical-align: middle;
-  width: 48px;
-  height: 48px;
-  border-radius: 24px;
-  margin: 0 11px;
-}
-
-.node-title {
-  font-size: 1.2em;
-  padding: 6px 11px 0;
-}
-
-.node-content {
-  padding: 6px 11px;
-  font-size: .9em;
-}
-
-.node-footer {
-  font-size: .8em;
-  margin: 11px 0;
-}
-
-.reply-avatar {
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  width: 48px;
-  height: 48px;
-  border-radius: 24px;
-}
-
-svg {
-
-  .link {
-    stroke: #999;
-    stroke-width: 4;
-  }
-
-  .link-selected {
-  }
-
-  .link-unselected {
-    stroke: #666;
-    stroke-width: 2;
-  }
-
-}
-
-/* Sidebar */
-// @TODO: Clean up (esp. .info)
-
-.info {
-  background-color: $info-bg-color;
-  color: $info-text-color;
-  padding: 0 18px;
-}
-
-.sidebar {
-  h2 {
-    margin-bottom: 0;
-  }
-}
-
-.discuss-element {
-  padding: 4px 11px 11px;
-  margin: 11px 0;
-  border-radius: 5px;
-  background-color: $convo-element-color;
-}
-
-.discuss-element-header {
-  margin: 6px 0;
-  font-size: .8em;
-  img {
-    vertical-align: middle;
-    width: 36px;
-    height: 36px;
-    border-radius: 18px;
-    margin: 0 11px 0 0;
-  }
-}
-
-/* General Utilities */
-
-.hidden {
-  display: none;
 }
