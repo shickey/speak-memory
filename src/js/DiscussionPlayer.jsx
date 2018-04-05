@@ -1,20 +1,25 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { compose } from 'redux'
+import ReactModal from 'react-modal';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import firebase from 'firebase';
-import { firebaseConnect, getVal } from 'react-redux-firebase'
+import { firebaseConnect, getVal } from 'react-redux-firebase';
 
 import VideoPlayer from './VideoPlayer';
+import Recorder from './Recorder';
 
 class DiscussionPlayer extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      currentVideoIdx: null
+      currentVideoIdx: null,
+      replying: false
     };
     this.avatarClicked = this.avatarClicked.bind(this);
     this.onVideoEnd = this.onVideoEnd.bind(this);
+    this.initiateReply = this.initiateReply.bind(this);
+    this.endReply = this.endReply.bind(this);
   }
 
   avatarClicked(idx) {
@@ -31,6 +36,19 @@ class DiscussionPlayer extends React.Component {
     }
   }
 
+  initiateReply() {
+    this.setState({
+      currentVideoIdx: null,
+      replying: true
+    })
+  }
+
+  endReply() {
+    this.setState({
+      replying: false
+    });
+  }
+
   render() {
 
     if (!this.props.discussion) { return null; }
@@ -39,26 +57,36 @@ class DiscussionPlayer extends React.Component {
 
     var entries = Object.values(this.props.discussion.entries)
 
-    entries.forEach( (d, idx) => {
-      var pullClass = '';
-      var currentVideoIdx = this.state.currentVideoIdx;
-      if (currentVideoIdx !== null) {
-        if (idx < currentVideoIdx) {
-          pullClass = 'avatar-past';
+    if (!this.state.replying) { // @TODO: This `if` is really only here to prevent the avatars from appearing over top of the modal. Kind of hack. Remove eventually
+      entries.forEach( (d, idx) => {
+        var pullClass = '';
+        var currentVideoIdx = this.state.currentVideoIdx;
+        if (currentVideoIdx !== null) {
+          if (idx < currentVideoIdx) {
+            pullClass = 'avatar-past';
+          }
+          else if (idx > currentVideoIdx) {
+            pullClass = 'avatar-future';
+          }
+          else {
+            pullClass = 'avatar-now';
+          }
         }
-        else if (idx > currentVideoIdx) {
-          pullClass = 'avatar-future';
-        }
-        else {
-          pullClass = 'avatar-now';
-        }
-      }
+        avatars.push(
+          <div className={`player-avatar ${pullClass}`} key={d.id}>
+            <img onClick={() => this.avatarClicked(idx)} src={d.avatarUrl} />
+          </div>
+        );
+      });
+
+      // Reply button
       avatars.push(
-        <div className={`player-avatar ${pullClass}`} key={d.id}>
-          <img onClick={() => this.avatarClicked(idx)} src={d.avatarUrl} />
+        <div className="player-avatar" key="reply">
+          <img onClick={this.initiateReply} src="img/add.svg" />
         </div>
       );
-    });
+    }
+    
 
     return (
       <div className="player-container">
@@ -67,6 +95,9 @@ class DiscussionPlayer extends React.Component {
           <div className={ this.state.currentVideoIdx !== null ? 'avatars-line playing' : 'avatars-line'} ></div>
           {avatars}
         </div>
+        <ReactModal isOpen={this.state.replying} className="modal" overlayClassName="modal-overlay">
+          <Recorder discussionId={this.props.match.params.discussionId} onUploadSuccess={this.endReply} />
+        </ReactModal>
       </div>
     );
   }

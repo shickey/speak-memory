@@ -1,5 +1,8 @@
 import React from 'react';
 import RecordRTC from 'recordrtc';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { firebaseConnect } from 'react-redux-firebase';
 
 const hasGetUserMedia = !!(navigator.mediaDevices.getUserMedia);
 
@@ -24,7 +27,8 @@ class Recorder extends React.Component {
       recordingState: RecordingStates.WAITING,
       stream: null,
       src: null,
-      recordingVideo: null
+      recordingVideo: null,
+      recordedBlob: null
     }
 
     this.videoPlaybackReachedEnd = this.videoPlaybackReachedEnd.bind(this);
@@ -74,7 +78,8 @@ class Recorder extends React.Component {
       recordingState: RecordingStates.WAITING,
       stream: null,
       src: null,
-      recordingVideo: null
+      recordingVideo: null,
+      recordedBlob: null
     })
   }
 
@@ -114,11 +119,14 @@ class Recorder extends React.Component {
   stopRecording() {
     if (this.state.recordingVideo) {
       this.state.recordingVideo.stopRecording( (blobUrl) => {
+
+        var blob = this.state.recordingVideo.blob;
         
         this.setState({
           recordingState: RecordingStates.PLAYBACK_READY,
           recordingVideo: null,
-          src: blobUrl
+          src: blobUrl,
+          recordedBlob: blob
         });
 
       });
@@ -146,21 +154,51 @@ class Recorder extends React.Component {
   }
 
   beginUpload() {
+    
     this.setState({
       recordingState: RecordingStates.UPLOADING
     });
-    setTimeout( () => {
-      this.setState({
-        recordingState: RecordingStates.UPLOAD_SUCCESS
+
+    // @TODO:
+    // @TODO:
+    // @TODO:
+    // @TODO:
+    // @TODO: This needs cleanup (error handling, etc).
+    //        Also: is there a way to upload the video and push the db entry atomically?
+    this.props.firebase.uploadFile('videos', this.state.recordedBlob, null, {
+      name: () => `${Date.now()}.webm`
+    }).then( (info) => {
+      // @TODO: Check for success/failure
+      var path = `discussions/${this.props.discussionId}/entries`;
+      var ref = this.props.firebase.ref(path);
+      var entryId = ref.push().key;
+
+      var downloadUrl = info.uploadTaskSnaphot.downloadURL; // @NOTE: The "snaphot" typo is intentional in react-redux-firebase???!? Uggh.
+
+      // @TODO: Fill in with proper user info once auth is set up
+      var newEntry = {
+        author : "Branda Rajesh",
+        avatarUrl : "https://firebasestorage.googleapis.com/v0/b/speak-memory.appspot.com/o/avatars%2Fuser-18.png?alt=media&token=14e3aae6-823a-4a1e-8df6-1df168b4d6",
+        id : entryId,
+        videoUrl: downloadUrl
+      }
+
+      this.props.firebase.set(`${path}/${entryId}`, newEntry).then( (snapshot) => {
+        this.setState({
+          recordingState: RecordingStates.UPLOAD_SUCCESS
+        });
       });
-    }, 5000)
+
+    });
+    
   }
 
   uploadSuccessOkay() {
-    this.setState({
-      recordingState: RecordingStates.READY,
-      src: window.URL.createObjectURL(this.state.stream)
-    });
+    // this.setState({
+    //   recordingState: RecordingStates.READY,
+    //   src: window.URL.createObjectURL(this.state.stream)
+    // });
+    this.props.onUploadSuccess();
   }
 
   uploadFailureCancel() {
@@ -172,39 +210,6 @@ class Recorder extends React.Component {
 
   uploadFailureRetry() {
     this.beginUpload();
-  }
-
-  // TODO: Remove eventually
-  debugStringForRecordingState(recordingState) {
-    switch (recordingState) {
-      case RecordingStates.WAITING:
-        return "WAITING";
-      break;
-      case RecordingStates.NO_CAMERA:
-        return "NO_CAMERA";
-      break;
-      case RecordingStates.READY:
-        return "READY";
-      break;
-      case RecordingStates.RECORDING:
-        return "RECORDING";
-      break;
-      case RecordingStates.PLAYBACK_READY:
-        return "PLAYBACK_READY";
-      break;
-      case RecordingStates.PLAYBACK_PLAY:
-        return "PLAYBACK_PLAY";
-      break;
-      case RecordingStates.UPLOADING:
-        return "UPLOADING";
-      break;
-      case RecordingStates.UPLOAD_SUCCESS:
-        return "UPLOAD_SUCCESS";
-      break;
-      case RecordingStates.UPLOAD_FAILURE:
-        return "UPLOAD_FAILURE";
-      break;
-    }
   }
 
   render() {
@@ -320,7 +325,6 @@ class Recorder extends React.Component {
 
     return (
       <div className="recorder">
-        <div className="debug">{this.debugStringForRecordingState(this.state.recordingState)}</div>
         <h2>Record Your Message</h2>
         {videoOrInfo}
         {recordingControls}
@@ -330,4 +334,18 @@ class Recorder extends React.Component {
 
 }
 
-export default Recorder;
+
+const mapStateToProps = (state, props) => {
+  return {
+    // discussion: getVal(state.firebase, `data/discussions/${props.match.params.discussionId}`)
+  }
+};
+
+export default compose(
+  firebaseConnect((props) => {
+    return [
+      // `discussions/${props.match.params.discussionId}`
+    ]
+  }),
+  connect(mapStateToProps)
+)(Recorder);
