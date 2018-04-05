@@ -131,31 +131,6 @@ a, a:hover, a:visited {
 
 /********************************************
  *
- * React Modal Style Overrides
- *
- ********************************************/
-
-.modal {
-  position: absolute;
-  top: 100px;
-  left: 60px;
-  right: 60px;
-  background-color: $convo-element-color;
-  padding: 21px;
-  border-radius: 10px;
-}
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(25, 25, 25, 0.9);
-}
-
-/********************************************
- *
  * Dashboard 
  *
  ********************************************/
@@ -308,7 +283,7 @@ a, a:hover, a:visited {
 .avatars-line {
   position: absolute;
   height: 2px;
-  width: 100%;
+  width: 99%; // Prevents weird pixel hanging off the edge occasionally
   background-color: #aaa;
   transition: background-color 0.5s;
 
@@ -387,6 +362,8 @@ a, a:hover, a:visited {
 .recorder-video {
   width: 600px;
   height: 450px;
+  width: 100%;
+  height: 75%;
   background-color: #000;
 }
 
@@ -409,4 +386,33 @@ a, a:hover, a:visited {
   to {
     opacity: 0.2;
   }
+}
+
+/********************************************
+ *
+ * React Modal Style Overrides For Recorder
+ *
+ ********************************************/
+
+.modal {
+  position: absolute;
+  top: 100px;
+  left: 60px;
+  right: 60px;
+  background-color: $convo-element-color;
+  padding: 21px;
+  border-radius: 10px;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(25, 25, 25, 0.9);
 }

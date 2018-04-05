@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#F78E31;}
+	.st0{display:none;}
+	.st1{display:inline;fill:#26252C;}
+	.st2{display:inline;fill:#404754;}
+	.st3{fill:#4BB966;}
 </style>
-<g>
-	<path class="st0" d="M256,0C114.6,0,0,114.6,0,256s114.6,256,256,256s256-114.6,256-256S397.4,0,256,0z M402.3,274.3h-128v128
-		h-36.6v-128h-128v-36.6h128v-128h36.6v128h128V274.3z"/>
+<g id="Layer_2" class="st0">
+	<rect class="st1" width="512" height="512"/>
+	<rect x="-82.5" y="282" class="st2" width="677" height="280"/>
+</g>
+<g id="Layer_1">
+	<g>
+		<path class="st3" d="M256,0C114.6,0,0,114.6,0,256s114.6,256,256,256s256-114.6,256-256S397.4,0,256,0z M402.3,274.3h-128v128
+			h-36.6v-128h-128v-36.6h128v-128h36.6v128h128V274.3z"/>
+	</g>
 </g>
 </svg>

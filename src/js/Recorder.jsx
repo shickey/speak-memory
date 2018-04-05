@@ -194,10 +194,6 @@ class Recorder extends React.Component {
   }
 
   uploadSuccessOkay() {
-    // this.setState({
-    //   recordingState: RecordingStates.READY,
-    //   src: window.URL.createObjectURL(this.state.stream)
-    // });
     this.props.onUploadSuccess();
   }
 
