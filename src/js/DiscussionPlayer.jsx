@@ -96,7 +96,7 @@ class DiscussionPlayer extends React.Component {
           <div className={ this.state.currentVideoIdx !== null ? 'avatars-line playing' : 'avatars-line'} ></div>
         </div>
         <ReactModal isOpen={this.state.replying} className="modal" overlayClassName="modal-overlay">
-          <Recorder discussionId={this.props.match.params.discussionId} onUploadSuccess={this.endReply} />
+          <Recorder discussionId={this.props.match.params.discussionId} onUploadSuccess={this.endReply} onRequestDismiss={this.endReply} />
         </ReactModal>
       </div>
     );

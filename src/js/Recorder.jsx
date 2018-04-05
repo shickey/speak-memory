@@ -32,6 +32,7 @@ class Recorder extends React.Component {
     }
 
     this.videoPlaybackReachedEnd = this.videoPlaybackReachedEnd.bind(this);
+    this.requestDismiss = this.requestDismiss.bind(this);
     this.startRecording = this.startRecording.bind(this);
     this.stopRecording = this.stopRecording.bind(this);
     this.startPlayback = this.startPlayback.bind(this);
@@ -102,6 +103,10 @@ class Recorder extends React.Component {
     this.setState({
       recordingState: RecordingStates.PLAYBACK_READY
     });
+  }
+
+  requestDismiss() {
+    this.props.onRequestDismiss();
   }
 
   startRecording() {
@@ -218,6 +223,9 @@ class Recorder extends React.Component {
       case RecordingStates.WAITING:
         recordingControls = (
           <div className="recorder-controls">
+            <button className="btn btn-md recorder-controls-button btn-cancel" onClick={this.requestDismiss}>
+              Close
+            </button>
             <button className="btn btn-md recorder-controls-button" disabled>
               <img src="img/record.svg" />Record
             </button>
@@ -229,6 +237,9 @@ class Recorder extends React.Component {
         videoOrInfo = (<div className="recorder-info">No camera available</div>);
         recordingControls = (
           <div className="recorder-controls">
+            <button className="btn btn-md recorder-controls-button btn-cancel" onClick={this.requestDismiss}>
+              Close
+            </button>
             <button className="btn btn-md recorder-controls-button" disabled>
               <img src="img/record.svg" />Record
             </button>
@@ -239,6 +250,9 @@ class Recorder extends React.Component {
       case RecordingStates.READY:
         recordingControls = (
           <div className="recorder-controls">
+            <button className="btn btn-md recorder-controls-button btn-cancel" onClick={this.requestDismiss}>
+              Close
+            </button>
             <button className="btn btn-md recorder-controls-button" onClick={this.startRecording}>
               <img src="img/record.svg" />Record
             </button>
@@ -266,7 +280,7 @@ class Recorder extends React.Component {
               Play
             </button>
             <button className="btn btn-md recorder-controls-button btn-success" onClick={this.beginUpload}>
-              Save
+              Post
             </button>
           </div>
         );
@@ -282,18 +296,18 @@ class Recorder extends React.Component {
               Stop
             </button>
             <button className="btn btn-md recorder-controls-button btn-success" disabled>
-              Save
+              Post
             </button>
           </div>
         );
       break;
 
       case RecordingStates.UPLOADING:
-        videoOrInfo = (<div className="recorder-info"><div className="pulse">Uploading...</div></div>);
+        videoOrInfo = (<div className="recorder-info"><div className="pulse">Posting...</div></div>);
       break;
 
       case RecordingStates.UPLOAD_SUCCESS:
-        videoOrInfo = (<div className="recorder-info">Uploaded!</div>);
+        videoOrInfo = (<div className="recorder-info">Posted!</div>);
         recordingControls = (
           <div className="recorder-controls" onClick={this.uploadSuccessOkay}>
             <button className="btn btn-md recorder-controls-button btn-success">
@@ -304,7 +318,7 @@ class Recorder extends React.Component {
       break;
 
       case RecordingStates.UPLOAD_FAILURE:
-        videoOrInfo = (<div className="recorder-info">Upload failed.</div>);
+        videoOrInfo = (<div className="recorder-info">Post failed.</div>);
         recordingControls = (
           <div className="recorder-controls">
             <button className="btn btn-md recorder-controls-button btn-cancel" onClick={this.uploadFailureCancel}>
